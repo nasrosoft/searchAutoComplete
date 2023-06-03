@@ -37,7 +37,8 @@ export function Search() {
         {searchValue ? search.map(element => 
           <div 
           className={styles.button}
-          onClick={(e) => setSearchValue(element)}
+          key={element}
+          onClick={(e) => setSearchValue(data[element])}
           >{data[element]}</div>
           ): ''}
         

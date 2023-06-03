@@ -18,14 +18,12 @@ export const searchSlice = createSlice({
     // bla bla 
     handleSeatch:(state, action) => {
       const found = initialState.data.toString().toLocaleLowerCase().replace(/\s/g, '').split(',')
-      console.log(action.payload)
-      // let res = [];
+
       let index = [];
       for(let i=0; i< found.length; i++){
         if(found[i].indexOf(action.payload) !== -1){
 
           index.push(i)
-          // res.push(found[i])
         }
       }
 
