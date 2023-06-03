@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  handleSeatch
+  handleSearch
 } from './searchSlice';
 import styles from './Search.module.css';
 
@@ -20,7 +20,7 @@ export function Search() {
         value={searchValue}
         name="search"
         onChange={(e) => {
-          dispatch(handleSeatch(e.target.value.toLocaleLowerCase().replace(/\s/g, '')));
+          dispatch(handleSearch(e.target.value.toLocaleLowerCase().replace(/\s/g, '')));
           setSearchValue(e.target.value)
         }}
 
@@ -33,14 +33,17 @@ export function Search() {
           Search
         </button>
       </div>
-      <div>
-        {searchValue ? search.map(element => 
-          <div 
+      <div style={{ position: 'relative'}}>
+      {searchValue ? search.map((element, idx) => 
+        <h6 
           className={styles.button}
-          key={element}
+          key={idx}
           onClick={(e) => setSearchValue(data[element])}
-          >{data[element]}</div>
-          ): ''}
+          >
+          {data[element]}
+        </h6>
+          ): ''
+        }
         
 
       </div>
