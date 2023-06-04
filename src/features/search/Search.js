@@ -11,6 +11,26 @@ export function Search() {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState('');
 
+  const onKeyDown = (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      console.log("Tab");
+      setSearchValue(data[0])
+      
+    }
+  };
+   const result = search.map((element, idx) => 
+  <h6 
+   className={styles.button}
+   style={{    padding: '7px 4px',
+    margin: '7px 4px !important'}}
+   key={idx}
+   onClick={(e) => setSearchValue(data[element])}
+   >
+   {data[element]}
+ </h6>
+
+   )
   return (
     <div>
       <div className={styles.row}>
@@ -23,27 +43,17 @@ export function Search() {
           dispatch(handleSearch(e.target.value.toLocaleLowerCase().replace(/\s/g, '')));
           setSearchValue(e.target.value)
         }}
-
-
+        onKeyDown={onKeyDown}
         />
         <button
           className={styles.button}
-
         >
           Search
         </button>
       </div>
-      <div style={{ position: 'relative'}}>
-      {searchValue ? search.map((element, idx) => 
-        <h6 
-          className={styles.button}
-          key={idx}
-          onClick={(e) => setSearchValue(data[element])}
-          >
-          {data[element]}
-        </h6>
-          ): ''
-        }
+      <div style={{ position: 'absolute'}}>
+      
+      {searchValue ?  result: ''}
         
 
       </div>
