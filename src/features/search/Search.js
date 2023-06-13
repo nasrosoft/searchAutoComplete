@@ -10,13 +10,13 @@ export function Search() {
   const data = useSelector(state => state.search.data) 
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState('');
+  // const [res, setRes] = useState([]);
 
   const onKeyDown = (e) => {
     if (e.key === "Tab") {
       e.preventDefault();
-      console.log("Tab");
-      setSearchValue(data[0])
-      
+      setSearchValue(data.at(search))
+
     }
   };
    const result = search.map((element, idx) => 
